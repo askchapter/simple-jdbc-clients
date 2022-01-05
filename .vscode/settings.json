@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "package.json": "json",
+        "*.json": "jsonc"
+    },
+    "explorer.compactFolders": false
+}
