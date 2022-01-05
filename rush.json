@@ -1,24 +1,24 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
-  "rushVersion": "5.56.0",
-  "pnpmVersion": "6.7.1",
-  "pnpmOptions": {
-    "useWorkspaces": true
-  },
-  "nodeSupportedVersionRange": ">=16.13.0 <17.0.0",
-  "projectFolderMinDepth": 2,
-  "projectFolderMaxDepth": 2,
-  "ensureConsistentVersions": true,
-  "gitPolicy": {},
-  "repository": {
-    "url": "https://github.com/askchapter/simple-jdbc-clients",
-    "defaultBranch": "main",
-    "defaultRemote": "origin"
-  },
-  "projects": [
-    {
-      "packageName": "simple-jdbc-cli",
-      "projectFolder": "packages/simple-jdbc-cli"
-    }
-  ]
+    "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+    "rushVersion": "5.56.0",
+    "pnpmVersion": "6.7.1",
+    "pnpmOptions": {
+        "useWorkspaces": true
+    },
+    "nodeSupportedVersionRange": ">=16.13.0 <17.0.0",
+    "projectFolderMinDepth": 2,
+    "projectFolderMaxDepth": 2,
+    "ensureConsistentVersions": true,
+    "gitPolicy": {},
+    "repository": {
+        "url": "https://github.com/askchapter/simple-jdbc-clients",
+        "defaultBranch": "main",
+        "defaultRemote": "origin"
+    },
+    "projects": [
+        {
+            "packageName": "simple-jdbc-cli",
+            "projectFolder": "packages/simple-jdbc-cli"
+        }
+    ]
 }
