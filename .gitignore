@@ -66,3 +66,12 @@ common/autoinstallers/*/.npmrc
 
 # Heft
 .heft
+
+# Common toolchain intermediate files
+temp
+lib
+lib-amd
+lib-es6
+lib-esnext
+lib-commonjs
+dist

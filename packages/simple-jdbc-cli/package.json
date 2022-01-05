@@ -1,0 +1,22 @@
+{
+    "name": "simple-jdbc-cli",
+    "version": "0.0.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/askchapter/simple-jdbc-clients.git"
+    },
+    "scripts": {
+        "build": "heft test --clean"
+    },
+    "dependencies": {
+        "simple-jdbc-api": "^0.0.5"
+    },
+    "devDependencies": {
+        "@rushstack/eslint-config": "^2.5.1",
+        "@rushstack/heft": "^0.44.2",
+        "@rushstack/heft-node-rig": "^1.5.2",
+        "@types/heft-jest": "^1.0.2",
+        "@types/node": "^16.11.7",
+        "eslint": "^8.6.0"
+    }
+}
