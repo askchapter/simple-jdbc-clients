@@ -1,7 +1,3 @@
-interface Hi {
-    test: string;
-}
-
-export function hello() {
+export function hello(): string {
     return "hello!";
 }
