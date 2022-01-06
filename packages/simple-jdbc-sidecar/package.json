@@ -1,23 +1,18 @@
 {
-    "name": "simple-jdbc-cli",
+    "name": "simple-jdbc-sidecar",
     "version": "0.0.0",
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts",
     "repository": {
         "type": "git",
         "url": "https://github.com/askchapter/simple-jdbc-clients.git"
     },
     "scripts": {
-        "build": "heft test --clean",
-        "start": "node ./lib/runCli.js"
-    },
-    "bin": {
-        "simple-jdbc-cli": "node ./lib/runCli.js"
+        "build": "heft test --clean && node lib/downloadServer.js"
     },
     "dependencies": {
-        "simple-jdbc-api": "^0.0.5",
-        "simple-jdbc-sidecar": "workspace:*",
-        "conjure-client": "^2.5.0",
-        "cross-fetch": "^3.1.4",
-        "dedent": "^0.7.0"
+        "tmp": "^0.2.1",
+        "js-yaml": "^4.1.0"
     },
     "devDependencies": {
         "@rushstack/eslint-config": "^2.5.1",
@@ -25,7 +20,11 @@
         "@rushstack/heft-node-rig": "^1.5.2",
         "@types/heft-jest": "^1.0.2",
         "@types/node": "^16.11.7",
-        "@types/dedent": "^0.7.0",
-        "eslint": "^8.6.0"
+        "eslint": "^8.6.0",
+        "tar": "^6.1.11",
+        "@types/tar": "^6.1.1",
+        "@types/tmp": "^0.2.3",
+        "simple-jdbc-api": "^0.0.5",
+        "@types/js-yaml": "^4.0.5"
     }
 }

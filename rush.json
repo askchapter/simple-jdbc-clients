@@ -17,6 +17,10 @@
     },
     "projects": [
         {
+            "packageName": "simple-jdbc-sidecar",
+            "projectFolder": "packages/simple-jdbc-sidecar"
+        },
+        {
             "packageName": "simple-jdbc-cli",
             "projectFolder": "packages/simple-jdbc-cli"
         }
