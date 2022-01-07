@@ -11,7 +11,7 @@ interface SimpleJdbcSidecarOpts {
     onStdout: (data: string) => void;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onStderr: (data: string) => void;
-    onClose: () => void;
+    onExit: () => void;
 }
 
 interface SimpleJdbcSidecarProcess {
@@ -28,17 +28,29 @@ export async function start(opts: SimpleJdbcSidecarOpts): Promise<SimpleJdbcSide
 
             await fs.writeFile(path, yaml.dump(opts.configuration));
 
-            const process = spawn(serverStartupScript, [path]);
-            process.stdout.on("data", (chunk) => {
+            // Set up sidecar
+            const childProcess = spawn(serverStartupScript, [path]);
+            childProcess.stdout.on("data", (chunk) => {
                 opts.onStdout(chunk.toString());
             });
-            process.stderr.on("data", (chunk) => {
+            childProcess.stderr.on("data", (chunk) => {
                 opts.onStderr(chunk.toString());
             });
-            process.on("close", (_code) => {
+            childProcess.on("exit", (_code) => {
                 remove();
-                opts.onClose();
+                opts.onExit();
             });
+
+            // Kill the sidecar if the parent dies
+            const onParentExit = (): void => {
+                remove();
+                childProcess.kill();
+            };
+            process.on("exit", onParentExit);
+            process.on("SIGINT", onParentExit);
+            process.on("SIGUSR1", onParentExit);
+            process.on("SIGUSR2", onParentExit);
+            process.on("uncaughtException", onParentExit);
 
             // TODO: search for open ports (https://github.com/sindresorhus/get-port) or use provided
             resolve({ host: "0.0.0.0", port: 3000 });

@@ -2,7 +2,7 @@ import * as sidecar from "simple-jdbc-sidecar";
 import { IJdbcDriver, SimpleJdbcService, IQuery } from "simple-jdbc-api";
 import { DefaultHttpApiBridge } from "conjure-client";
 import fetch from "cross-fetch";
-import * as readline from "readline";
+import repl from "repl";
 
 export interface SimpleJdbcCliOpts {
     driver: IJdbcDriver;
@@ -16,7 +16,7 @@ export async function runCli(opts: SimpleJdbcCliOpts): Promise<void> {
         },
         onStdout: (chunk) => console.log(chunk),
         onStderr: (chunk) => console.error(chunk),
-        onClose: () => process.exit(1),
+        onExit: () => process.exit(1),
     });
 
     const client = new SimpleJdbcService(
@@ -31,31 +31,25 @@ export async function runCli(opts: SimpleJdbcCliOpts): Promise<void> {
         })
     );
 
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
+    repl.start({
+        prompt: "> ",
+        eval: async (query, _context, _filename, callback) => {
+            try {
+                const { rows, columns } = await client.preview({
+                    jdbcUrl: opts.jdbcUrl,
+                    query: IQuery.statement({ sql: query }),
+                    limit: 10,
+                });
+                console.table(
+                    rows.map((row) =>
+                        Object.fromEntries(row.map((value, index) => [columns[index].name, value]))
+                    ),
+                    columns.map((column) => column.name)
+                );
+                callback(null, "Query executed successfully");
+            } catch (error) {
+                callback(error as Error, "Error executing query");
+            }
+        },
     });
-    rl.on("close", () => {
-        process.exit(0);
-    });
-    const prompt: (query: string) => Promise<string> = (query: string) =>
-        new Promise((resolve) => rl.question(query, resolve));
-
-    // eslint-disable-next-line no-constant-condition
-    while (true) {
-        const query = await prompt("> ");
-        const { rows, columns } = await client.preview({
-            jdbcUrl: opts.jdbcUrl,
-            query: IQuery.statement({ sql: query }),
-            limit: 10,
-        });
-        console.table(
-            rows.map((row) => Object.fromEntries(row.map((value, index) => [columns[index].name, value]))),
-            columns.map((column) => column.name)
-        );
-    }
 }
-
-runCli({})
-    .then(() => process.exit(0))
-    .catch(() => process.exit(1));
