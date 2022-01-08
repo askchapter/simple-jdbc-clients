@@ -1,10 +1,15 @@
-import { CommandLineParser, CommandLineStringParameter } from "@rushstack/ts-command-line";
+import {
+    CommandLineFlagParameter,
+    CommandLineParser,
+    CommandLineStringParameter,
+} from "@rushstack/ts-command-line";
 import { runCli } from "./runCli";
 
 export class SimpleJdbcCli extends CommandLineParser {
     private _driver!: CommandLineStringParameter;
     private _className!: CommandLineStringParameter;
     private _jdbcUrl!: CommandLineStringParameter;
+    private _debug!: CommandLineFlagParameter;
 
     public constructor() {
         super({
@@ -32,6 +37,11 @@ export class SimpleJdbcCli extends CommandLineParser {
             argumentName: "JDBC_URL",
             required: true,
         });
+
+        this._debug = this.defineFlagParameter({
+            parameterLongName: "--debug",
+            description: "Include log output",
+        });
     }
 
     protected onExecute = async (): Promise<void> => {
@@ -41,6 +51,7 @@ export class SimpleJdbcCli extends CommandLineParser {
                 className: this._className.value!,
             },
             jdbcUrl: this._jdbcUrl.value!,
+            debug: this._debug.value,
         });
     };
 }
