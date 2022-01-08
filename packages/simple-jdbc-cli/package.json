@@ -13,7 +13,7 @@
         "simple-jdbc": "./bin/simple-jdbc-cli"
     },
     "dependencies": {
-        "simple-jdbc-api": "^0.0.5",
+        "simple-jdbc-api": "^0.0.6",
         "simple-jdbc-sidecar": "workspace:*",
         "conjure-client": "^2.5.0",
         "cross-fetch": "^3.1.4",

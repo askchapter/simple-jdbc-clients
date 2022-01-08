@@ -12,7 +12,8 @@
     },
     "dependencies": {
         "tmp": "^0.2.1",
-        "js-yaml": "^4.1.0"
+        "js-yaml": "^4.1.0",
+        "portfinder": "^1.0.28"
     },
     "devDependencies": {
         "@rushstack/eslint-config": "^2.5.1",
@@ -24,7 +25,7 @@
         "tar": "^6.1.11",
         "@types/tar": "^6.1.1",
         "@types/tmp": "^0.2.3",
-        "simple-jdbc-api": "^0.0.5",
+        "simple-jdbc-api": "^0.0.6",
         "@types/js-yaml": "^4.0.5"
     }
 }

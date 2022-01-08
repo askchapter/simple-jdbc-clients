@@ -18,14 +18,14 @@ importers:
       cross-fetch: ^3.1.4
       dedent: ^0.7.0
       eslint: ^8.6.0
-      simple-jdbc-api: ^0.0.5
+      simple-jdbc-api: ^0.0.6
       simple-jdbc-sidecar: workspace:*
     dependencies:
       '@rushstack/ts-command-line': 4.10.6
       conjure-client: 2.5.0
       cross-fetch: 3.1.4
       dedent: 0.7.0
-      simple-jdbc-api: 0.0.5
+      simple-jdbc-api: 0.0.6
       simple-jdbc-sidecar: link:../simple-jdbc-sidecar
     devDependencies:
       '@rushstack/eslint-config': 2.5.1_eslint@8.6.0
@@ -48,11 +48,13 @@ importers:
       '@types/tmp': ^0.2.3
       eslint: ^8.6.0
       js-yaml: ^4.1.0
-      simple-jdbc-api: ^0.0.5
+      portfinder: ^1.0.28
+      simple-jdbc-api: ^0.0.6
       tar: ^6.1.11
       tmp: ^0.2.1
     dependencies:
       js-yaml: 4.1.0
+      portfinder: 1.0.28
       tmp: 0.2.1
     devDependencies:
       '@rushstack/eslint-config': 2.5.1_eslint@8.6.0
@@ -64,7 +66,7 @@ importers:
       '@types/tar': 6.1.1
       '@types/tmp': 0.2.3
       eslint: 8.6.0
-      simple-jdbc-api: 0.0.5
+      simple-jdbc-api: 0.0.6
       tar: 6.1.11
 
 packages:
@@ -1310,6 +1312,12 @@ packages:
       es-abstract: 1.19.1
     dev: true
 
+  /async/2.6.3:
+    resolution: {integrity: sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==}
+    dependencies:
+      lodash: 4.17.21
+    dev: false
+
   /asynckit/0.4.0:
     resolution: {integrity: sha1-x57Zf380y48robyXkLzDZkdLS3k=}
     dev: true
@@ -1608,6 +1616,12 @@ packages:
       whatwg-mimetype: 2.3.0
       whatwg-url: 8.7.0
     dev: true
+
+  /debug/3.2.7:
+    resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
+    dependencies:
+      ms: 2.1.2
+    dev: false
 
   /debug/4.3.3:
     resolution: {integrity: sha512-/zxw5+vh1Tfv+4Qn7a5nsbcJKPaSvCDhojn6FEl9vupwK2VCSDtEiEtqr8DFtzYFOdz63LBkxec7DYuc2jon6Q==}
@@ -3095,7 +3109,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /loose-envify/1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
@@ -3165,7 +3178,6 @@ packages:
 
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
-    dev: true
 
   /minipass/3.1.6:
     resolution: {integrity: sha512-rty5kpw9/z8SX9dmxblFA6edItUmwJgMeYDZRrwlIVN27i8gysGbznJwUggw2V/FVqFSDdWy040ZPS811DYAqQ==}
@@ -3182,6 +3194,13 @@ packages:
       yallist: 4.0.0
     dev: true
 
+  /mkdirp/0.5.5:
+    resolution: {integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==}
+    hasBin: true
+    dependencies:
+      minimist: 1.2.5
+    dev: false
+
   /mkdirp/1.0.4:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
     engines: {node: '>=10'}
@@ -3190,7 +3209,6 @@ packages:
 
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
-    dev: true
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=}
@@ -3386,6 +3404,15 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
+  /portfinder/1.0.28:
+    resolution: {integrity: sha512-Se+2isanIcEqf2XMHjyUKskczxbPH7dQnlMjXX6+dybayyHvAf/TCgyMRlzf/B6QDhAEFOGes0pzRo3by4AbMA==}
+    engines: {node: '>= 0.12.0'}
+    dependencies:
+      async: 2.6.3
+      debug: 3.2.7
+      mkdirp: 0.5.5
+    dev: false
+
   /prelude-ls/1.1.2:
     resolution: {integrity: sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ=}
     engines: {node: '>= 0.8.0'}
@@ -3578,8 +3605,8 @@ packages:
     resolution: {integrity: sha512-sDl4qMFpijcGw22U5w63KmD3cZJfBuFlVNbVMKje2keoKML7X2UzWbc4XrmEbDwg0NXJc3yv4/ox7b+JWb57kQ==}
     dev: true
 
-  /simple-jdbc-api/0.0.5:
-    resolution: {integrity: sha512-KgXgt/ktf+CKNkZxuKiqsrNWhZzYuviPu3LTRFxAztw+NLGfoOlo2UbCHUvbfi+9PDe4NWB1srttfGXE4cW5IA==}
+  /simple-jdbc-api/0.0.6:
+    resolution: {integrity: sha512-O/virfWPn+Tcam74R0X3RdMBgO5p79NvEjv797mAQ470X2Dte2E/EiCZIhQ3DOf+6odR2tWtQU/Y476yloYhxg==}
     dependencies:
       conjure-client: 2.5.0
 

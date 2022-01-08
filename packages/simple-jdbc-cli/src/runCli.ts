@@ -11,9 +11,7 @@ export interface SimpleJdbcCliOpts {
 
 export async function runCli(opts: SimpleJdbcCliOpts): Promise<void> {
     const { host, port } = await sidecar.start({
-        configuration: {
-            drivers: [opts.driver],
-        },
+        drivers: [opts.driver],
         onStdout: (chunk) => console.log(chunk),
         onStderr: (chunk) => console.error(chunk),
         onExit: () => process.exit(1),
