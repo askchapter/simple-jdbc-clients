@@ -19,7 +19,8 @@
         "@rushstack/ts-command-line": "^4.10.6",
         "chalk": "^4.1.2",
         "cli-table": "^0.3.11",
-        "string-argv": "^0.3.1"
+        "string-argv": "^0.3.1",
+        "yargs": "^17.3.1"
     },
     "devDependencies": {
         "@rushstack/eslint-config": "^2.5.1",
@@ -29,6 +30,7 @@
         "@types/node": "^16.11.7",
         "@types/dedent": "^0.7.0",
         "@types/cli-table": "^0.3.0",
+        "@types/yargs": "^17.0.8",
         "eslint": "^8.6.0"
     }
 }

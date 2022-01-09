@@ -4,8 +4,7 @@ import chalk from "chalk";
 import dedent from "dedent";
 import repl from "repl";
 import Table from "cli-table";
-import stringArgv from "string-argv";
-import { TablesCommandParser } from "./tablesCommandParser";
+import { parseTablesCommand } from "./parseTablesCommand";
 
 export interface SimpleJdbcCliOpts {
     driver: IJdbcDriver;
@@ -44,46 +43,44 @@ export async function runCli(opts: SimpleJdbcCliOpts): Promise<void> {
                     console.log(helpMessage(metadata));
                 } else if (query === "/catalogs") {
                     const catalogs = await client.catalogs({ jdbcUrl });
-                    const table = new Table({ head: ["catalog"] });
-                    catalogs.forEach((catalog) => table.push([catalog]));
-                    console.log(table.toString());
+                    printTable(
+                        ["catalog"],
+                        catalogs.map((catalog) => [catalog])
+                    );
                 } else if (query.startsWith("/tables")) {
-                    const args = stringArgv(query).slice(1);
-                    const tablesCommandParser = new TablesCommandParser();
-                    await tablesCommandParser.execute(args);
-                    if (tablesCommandParser.parametersProcessed) {
+                    const parsedCommand = await parseTablesCommand(query);
+                    if (parsedCommand.result === "help") {
+                        console.log(parsedCommand.help);
+                    } else if (parsedCommand.result === "invalid") {
+                        throw parsedCommand.error;
+                    } else {
                         const tables = await client.tables({
                             jdbcUrl,
-                            ...tablesCommandParser.getOpts(),
+                            ...parsedCommand.arguments,
                         });
-                        const displayTable = new Table({
-                            head: ["catalog", "schema", "table", "type"],
-                        });
-                        tables.forEach((table) =>
-                            displayTable.push([
+                        printTable(
+                            ["catalog", "schema", "table", "type"],
+                            tables.map((table) => [
                                 table.locator.catalog,
                                 table.locator.schema,
                                 table.locator.table,
                                 table.type,
                             ])
                         );
-                        console.log(displayTable.toString());
                     }
                 } else {
-                    const { rows, columns } = await client.preview({
+                    const { columns, rows } = await client.preview({
                         jdbcUrl,
                         query: IQuery.statement({ sql: query }),
                     });
-                    const table = new Table({
-                        head: columns.map((column) => `${column.name} (${column.type.type})`),
-                    });
-                    rows.forEach((row) => table.push(row));
-                    console.log(table.toString());
+                    printTable(
+                        columns.map((column) => `${column.name} (${column.type.type})`),
+                        rows
+                    );
                 }
 
                 callback(null);
             } catch (error) {
-                console.error(chalk.red("Error executing query"));
                 callback(error as Error);
             }
         },
@@ -98,8 +95,16 @@ function helpMessage(metadata: IMetadataResponse): string {
     usage:
     - type '/help' to display this message again
     - type '/catalogs' to list catalogs in the database
-    - type '/tables' to search tables in the database
+    - type '/tables' to search tables in the database, and
+      '/tables --help' to see available options
     - enter a SQL query to run it and display a preview of the results
     ==================================================================
     `;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function printTable(columns: string[], rows: any[][]): void {
+    const table = new Table({ head: columns });
+    rows.forEach((row) => table.push(row.map((value) => value ?? "")));
+    console.log(table.toString());
 }
