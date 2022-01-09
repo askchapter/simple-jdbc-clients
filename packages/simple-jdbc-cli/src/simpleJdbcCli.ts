@@ -44,7 +44,7 @@ export class SimpleJdbcCli extends CommandLineParser {
         });
     }
 
-    protected onExecute = async (): Promise<void> => {
+    protected async onExecute(): Promise<void> {
         await runCli({
             driver: {
                 path: this._driver.value!,
@@ -53,5 +53,5 @@ export class SimpleJdbcCli extends CommandLineParser {
             jdbcUrl: this._jdbcUrl.value!,
             debug: this._debug.value,
         });
-    };
+    }
 }

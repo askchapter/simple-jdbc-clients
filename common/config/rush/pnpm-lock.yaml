@@ -19,15 +19,17 @@ importers:
       cli-table: ^0.3.11
       dedent: ^0.7.0
       eslint: ^8.6.0
-      simple-jdbc-api: ^0.0.6
+      simple-jdbc-api: ^0.0.7
       simple-jdbc-sidecar: workspace:*
+      string-argv: ^0.3.1
     dependencies:
       '@rushstack/ts-command-line': 4.10.6
       chalk: 4.1.2
       cli-table: 0.3.11
       dedent: 0.7.0
-      simple-jdbc-api: 0.0.6
+      simple-jdbc-api: 0.0.7
       simple-jdbc-sidecar: link:../simple-jdbc-sidecar
+      string-argv: 0.3.1
     devDependencies:
       '@rushstack/eslint-config': 2.5.1_eslint@8.6.0
       '@rushstack/heft': 0.44.2
@@ -53,7 +55,7 @@ importers:
       eslint: ^8.6.0
       js-yaml: ^4.1.0
       portfinder: ^1.0.28
-      simple-jdbc-api: ^0.0.6
+      simple-jdbc-api: ^0.0.7
       tar: ^6.1.11
       tmp: ^0.2.1
     dependencies:
@@ -61,7 +63,7 @@ importers:
       cross-fetch: 3.1.4
       js-yaml: 4.1.0
       portfinder: 1.0.28
-      simple-jdbc-api: 0.0.6
+      simple-jdbc-api: 0.0.7
       tmp: 0.2.1
     devDependencies:
       '@rushstack/eslint-config': 2.5.1_eslint@8.6.0
@@ -3623,8 +3625,8 @@ packages:
     resolution: {integrity: sha512-sDl4qMFpijcGw22U5w63KmD3cZJfBuFlVNbVMKje2keoKML7X2UzWbc4XrmEbDwg0NXJc3yv4/ox7b+JWb57kQ==}
     dev: true
 
-  /simple-jdbc-api/0.0.6:
-    resolution: {integrity: sha512-O/virfWPn+Tcam74R0X3RdMBgO5p79NvEjv797mAQ470X2Dte2E/EiCZIhQ3DOf+6odR2tWtQU/Y476yloYhxg==}
+  /simple-jdbc-api/0.0.7:
+    resolution: {integrity: sha512-23yAVYHMqRuH4BvRi+xLibSVJg4FEbkYw8Cv4ftETBitRWVXUGjsd11C04sAmDKAxtgmsu4stw4kUcp/rquyfw==}
     dependencies:
       conjure-client: 2.5.0
     dev: false
