@@ -7,19 +7,21 @@ import repl from "repl";
 import Table from "cli-table";
 import { parseTablesCommand } from "./parseTablesCommand";
 
-export interface SimpleJdbcCliLocalConfiguration {
+interface SimpleJdbcCliLocalConfiguration {
     type: "local";
     driver: IJdbcDriver;
     debug: boolean;
 }
 
-export interface SimpleJdbcCliRemoteConfiguration {
+interface SimpleJdbcCliRemoteConfiguration {
     type: "remote";
     remote: string;
 }
 
+export type SimpleJdbcCliConfiguration = SimpleJdbcCliLocalConfiguration | SimpleJdbcCliRemoteConfiguration;
+
 export interface SimpleJdbcCliOpts {
-    configuration: SimpleJdbcCliLocalConfiguration | SimpleJdbcCliRemoteConfiguration;
+    configuration: SimpleJdbcCliConfiguration;
     jdbcUrl: string;
 }
 

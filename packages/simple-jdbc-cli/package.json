@@ -6,12 +6,10 @@
         "url": "https://github.com/askchapter/simple-jdbc-clients.git"
     },
     "scripts": {
-        "build": "heft test --clean",
-        "start": "./bin/simple-jdbc-cli"
+        "build": "heft test --clean"
     },
     "bin": {
-        "simple-jdbc": "./bin/simple-jdbc-cli",
-        "simple-jdbc-remote": "./bin/simple-jdbc-remote-cli"
+        "simple-jdbc": "./bin/simple-jdbc-cli"
     },
     "dependencies": {
         "simple-jdbc-api": "^0.0.7",
