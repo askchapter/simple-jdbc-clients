@@ -46,12 +46,15 @@ export class SimpleJdbcCli extends CommandLineParser {
 
     protected async onExecute(): Promise<void> {
         await runCli({
-            driver: {
-                path: this._driver.value!,
-                className: this._className.value!,
+            configuration: {
+                type: "local",
+                driver: {
+                    path: this._driver.value!,
+                    className: this._className.value!,
+                },
+                debug: this._debug.value!,
             },
             jdbcUrl: this._jdbcUrl.value!,
-            debug: this._debug.value,
         });
     }
 }

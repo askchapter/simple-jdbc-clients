@@ -1,6 +1,5 @@
-import { IConfiguration, IJdbcDriver, SimpleJdbcService, ISimpleJdbcService } from "simple-jdbc-api";
-import { DefaultHttpApiBridge } from "conjure-client";
-import fetch from "cross-fetch";
+import { IConfiguration, IJdbcDriver, ISimpleJdbcService } from "simple-jdbc-api";
+import { getSimpleJdbcClient } from "simple-jdbc-client-factory";
 import * as yaml from "js-yaml";
 import * as fs from "fs/promises";
 import * as tmp from "tmp";
@@ -62,17 +61,7 @@ export async function startSidecar(opts: SimpleJdbcSidecarOpts): Promise<ISimple
                 process.on("uncaughtException", onParentExit);
 
                 // Construct a client to pass back to the consumer
-                const client = new SimpleJdbcService(
-                    new DefaultHttpApiBridge({
-                        baseUrl: `http://${host}:${port}`,
-                        userAgent: {
-                            productName: "simple-jdbc-sidecar",
-                            // TODO replace with real sidecar version
-                            productVersion: "0.0.0",
-                        },
-                        fetch,
-                    })
-                );
+                const client = getSimpleJdbcClient(`http://${host}:${port}`);
 
                 // Wait for the server to become ready
                 for (let i = 1; i <= 10; i++) {

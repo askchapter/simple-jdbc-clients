@@ -1,32 +1,35 @@
 import { startSidecar } from "simple-jdbc-sidecar";
-import { IJdbcDriver, IQuery, IMetadataResponse } from "simple-jdbc-api";
+import { IJdbcDriver, IQuery, IMetadataResponse, ISimpleJdbcService } from "simple-jdbc-api";
+import { getSimpleJdbcClient } from "simple-jdbc-client-factory";
 import chalk from "chalk";
 import dedent from "dedent";
 import repl from "repl";
 import Table from "cli-table";
 import { parseTablesCommand } from "./parseTablesCommand";
 
-export interface SimpleJdbcCliOpts {
+export interface SimpleJdbcCliLocalConfiguration {
+    type: "local";
     driver: IJdbcDriver;
-    jdbcUrl: string;
     debug: boolean;
 }
 
+export interface SimpleJdbcCliRemoteConfiguration {
+    type: "remote";
+    remote: string;
+}
+
+export interface SimpleJdbcCliOpts {
+    configuration: SimpleJdbcCliLocalConfiguration | SimpleJdbcCliRemoteConfiguration;
+    jdbcUrl: string;
+}
+
 export async function runCli(opts: SimpleJdbcCliOpts): Promise<void> {
-    const { jdbcUrl, driver, debug } = opts;
+    const { jdbcUrl, configuration } = opts;
 
-    const debugLoggers = debug
-        ? {
-              onStdout: (chunk: string) => console.log(chunk),
-              onStderr: (chunk: string) => console.error(chalk.red(chunk)),
-          }
-        : {};
-
-    const client = await startSidecar({
-        drivers: [driver],
-        ...debugLoggers,
-        onExit: () => process.exit(1),
-    });
+    const client =
+        configuration.type === "local"
+            ? await getLocalClient(configuration)
+            : getSimpleJdbcClient(configuration.remote);
 
     const metadata = await client.metadata({ jdbcUrl });
     console.log(helpMessage(metadata));
@@ -84,6 +87,22 @@ export async function runCli(opts: SimpleJdbcCliOpts): Promise<void> {
                 callback(error as Error);
             }
         },
+    });
+}
+
+async function getLocalClient(
+    localConfiguration: SimpleJdbcCliLocalConfiguration
+): Promise<ISimpleJdbcService> {
+    const debugLoggers = localConfiguration.debug
+        ? {
+              onStdout: (chunk: string) => console.log(chunk),
+              onStderr: (chunk: string) => console.error(chalk.red(chunk)),
+          }
+        : {};
+    return await startSidecar({
+        drivers: [localConfiguration.driver],
+        ...debugLoggers,
+        onExit: () => process.exit(1),
     });
 }
 

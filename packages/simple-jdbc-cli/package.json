@@ -10,11 +10,13 @@
         "start": "./bin/simple-jdbc-cli"
     },
     "bin": {
-        "simple-jdbc": "./bin/simple-jdbc-cli"
+        "simple-jdbc": "./bin/simple-jdbc-cli",
+        "simple-jdbc-remote": "./bin/simple-jdbc-remote-cli"
     },
     "dependencies": {
         "simple-jdbc-api": "^0.0.7",
         "simple-jdbc-sidecar": "workspace:*",
+        "simple-jdbc-client-factory": "workspace:*",
         "dedent": "^0.7.0",
         "@rushstack/ts-command-line": "^4.10.6",
         "chalk": "^4.1.2",

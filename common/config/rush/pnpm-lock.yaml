@@ -21,6 +21,7 @@ importers:
       dedent: ^0.7.0
       eslint: ^8.6.0
       simple-jdbc-api: ^0.0.7
+      simple-jdbc-client-factory: workspace:*
       simple-jdbc-sidecar: workspace:*
       string-argv: ^0.3.1
       yargs: ^17.3.1
@@ -30,6 +31,7 @@ importers:
       cli-table: 0.3.11
       dedent: 0.7.0
       simple-jdbc-api: 0.0.7
+      simple-jdbc-client-factory: link:../simple-jdbc-client-factory
       simple-jdbc-sidecar: link:../simple-jdbc-sidecar
       string-argv: 0.3.1
       yargs: 17.3.1
@@ -44,6 +46,27 @@ importers:
       '@types/yargs': 17.0.8
       eslint: 8.6.0
 
+  ../../packages/simple-jdbc-client-factory:
+    specifiers:
+      '@rushstack/eslint-config': ^2.5.1
+      '@rushstack/heft': ^0.44.2
+      '@rushstack/heft-node-rig': ^1.5.2
+      '@types/heft-jest': ^1.0.2
+      conjure-client: ^2.5.0
+      cross-fetch: ^3.1.4
+      eslint: ^8.6.0
+      simple-jdbc-api: ^0.0.7
+    dependencies:
+      conjure-client: 2.5.0
+      cross-fetch: 3.1.4
+      simple-jdbc-api: 0.0.7
+    devDependencies:
+      '@rushstack/eslint-config': 2.5.1_eslint@8.6.0
+      '@rushstack/heft': 0.44.2
+      '@rushstack/heft-node-rig': 1.5.2_@rushstack+heft@0.44.2
+      '@types/heft-jest': 1.0.2
+      eslint: 8.6.0
+
   ../../packages/simple-jdbc-sidecar:
     specifiers:
       '@rushstack/eslint-config': ^2.5.1
@@ -54,20 +77,18 @@ importers:
       '@types/node': ^16.11.7
       '@types/tar': ^6.1.1
       '@types/tmp': ^0.2.3
-      conjure-client: ^2.5.0
-      cross-fetch: ^3.1.4
       eslint: ^8.6.0
       js-yaml: ^4.1.0
       portfinder: ^1.0.28
       simple-jdbc-api: ^0.0.7
+      simple-jdbc-client-factory: workspace:*
       tar: ^6.1.11
       tmp: ^0.2.1
     dependencies:
-      conjure-client: 2.5.0
-      cross-fetch: 3.1.4
       js-yaml: 4.1.0
       portfinder: 1.0.28
       simple-jdbc-api: 0.0.7
+      simple-jdbc-client-factory: link:../simple-jdbc-client-factory
       tmp: 0.2.1
     devDependencies:
       '@rushstack/eslint-config': 2.5.1_eslint@8.6.0
