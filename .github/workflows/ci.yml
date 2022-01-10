@@ -19,5 +19,7 @@ jobs:
                   node-version: 16
             - name: Rush install
               run: ./common/scripts/install-run-rush.js install
+            - name: Prettier check
+              run: ./common/scripts/install-run-rush.js prettier-check
             - name: Rush build
-              run: ./common/scripts/install-run-rush.js build
+              run: ./common/scripts/install-run-rush.js build --verbose
