@@ -18,15 +18,18 @@
     "projects": [
         {
             "packageName": "simple-jdbc-client-factory",
-            "projectFolder": "packages/simple-jdbc-client-factory"
+            "projectFolder": "packages/simple-jdbc-client-factory",
+            "shouldPublish": true
         },
         {
             "packageName": "simple-jdbc-sidecar",
-            "projectFolder": "packages/simple-jdbc-sidecar"
+            "projectFolder": "packages/simple-jdbc-sidecar",
+            "shouldPublish": true
         },
         {
             "packageName": "simple-jdbc-cli",
-            "projectFolder": "packages/simple-jdbc-cli"
+            "projectFolder": "packages/simple-jdbc-cli",
+            "shouldPublish": true
         }
     ]
 }
