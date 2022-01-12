@@ -1,0 +1,17 @@
+{
+  "name": "simple-jdbc-client-factory",
+  "entries": [
+    {
+      "version": "0.1.0",
+      "tag": "simple-jdbc-client-factory_v0.1.0",
+      "date": "Wed, 12 Jan 2022 17:55:34 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "initial implementation"
+          }
+        ]
+      }
+    }
+  ]
+}

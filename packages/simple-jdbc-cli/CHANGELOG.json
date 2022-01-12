@@ -1,0 +1,25 @@
+{
+  "name": "simple-jdbc-cli",
+  "entries": [
+    {
+      "version": "0.1.0",
+      "tag": "simple-jdbc-cli_v0.1.0",
+      "date": "Wed, 12 Jan 2022 17:55:34 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "initial implementation"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"simple-jdbc-client-factory\" to `0.1.0`"
+          },
+          {
+            "comment": "Updating dependency \"simple-jdbc-sidecar\" to `0.1.0`"
+          }
+        ]
+      }
+    }
+  ]
+}
