@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "simple-jdbc-client-factory",
+      "comment": "initial implementation",
+      "type": "minor"
+    }
+  ],
+  "packageName": "simple-jdbc-client-factory"
+}
