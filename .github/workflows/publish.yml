@@ -1,14 +1,8 @@
-name: CI
-on:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
+name: Publish
+on: workflow_dispatch
 jobs:
-    build:
-        name: Build
+    publish:
+        name: Publish
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -19,11 +13,13 @@ jobs:
               uses: actions/setup-node@v2
               with:
                   node-version: 16
-            - name: Verify
-              run: node ./common/scripts/install-run-rush.js change --verify
-            - name: Prettier
-              run: node ./common/scripts/install-run-rush.js prettier-check
             - name: Install
               run: node ./common/scripts/install-run-rush.js install
             - name: Build
               run: node ./common/scripts/install-run-rush.js build --verbose
+            - name: Version
+              run: node ./common/scripts/install-run-rush.js version --bump --target-branch main
+            - name: Publish
+              run: node ./common/scripts/install-run-rush.js publish --apply --publish --include-all --target-branch main --add-commit-details
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
